@@ -167,8 +167,8 @@ const getUserEmail = async () => {
 };
 
 const getData = async userEmail => {
-  const mediumTracks = await getUserFavoriteTracks(10, "medium_term");
-  const mediumArtists = await getUserFavoriteArtists(10, "medium_term");
+  const mediumTracks = await getUserFavoriteTracks(10, "short_term");
+  const mediumArtists = await getUserFavoriteArtists(10, "short_term");
   //console.log(mediumTracks);
   const userData = {
     userEmail: { userEmail },
