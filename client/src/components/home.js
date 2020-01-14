@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Grid, Button, Input } from "semantic-ui-react";
 
 const Title = styled.h1`
-  text-align: center;
-  color: #272838;
+  font-size: 3em;
+  font-weight: bold;
+  padding-bottom: 20%;
+  color: #ffffff;
 `;
 
 const Wrapper = styled.div`
@@ -15,59 +18,18 @@ const Wrapper = styled.div`
   background-color: #2d132c;
 `;
 
-const PageContent = styled.div`
-  max-width: 75%;
-  text-align: center;
+const StyledInput = styled(Input)`
+  padding-bottom: 7%;
 `;
 
-const InputContainer = styled.div`
-  float: left;
-  width: 75%;
-  margin-top: 10px;
+const StyledButton = styled(Button)`
+  color: #ffffff !important;
+  background-color: #801336 !important;
+  cursor: pointer;
 `;
 
-const LabelContainer = styled.div`
-  float: left;
-  width: 25%;
-`;
-
-const InputBox = styled.input`
-  width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
-  resize: vertical;
-`;
-
-const InputLabel = styled.label`
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-  color: #272838;
-`;
-
-const Row = styled.div`
-  padding: 5px;
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-`;
-
-const CreateButton = styled.button`
-  transition: all 0.4s ease 0s;
-  border-radius: 5px;
-  font-size: 14px;
-  padding: 12px 30px;
-  margin-top: 16px;
-  color: #ffffff;
-  background-color: #2f3061;
-  &:hover {
-    color: #ffffff !important;
-    background: #ea526f;
-    border-color: #f6b93b !important;
-    border-radius: 5px;
-    transition: all 0.4s ease 0s;
-  }
+const StyledRow = styled(Grid.Row)`
+  padding-top: 25%;
 `;
 
 class home extends Component {
@@ -95,47 +57,39 @@ class home extends Component {
 
   render() {
     return (
-      <Wrapper className="Wrapper">
-        <PageContent>
-          <div>
-            <Title>Discover New Music!</Title>
-          </div>
-          <div>
-            <form>
-              <Row>
-                <LabelContainer>
-                  <InputLabel>Playlist Name</InputLabel>
-                </LabelContainer>
-                <InputContainer>
-                  <InputBox
-                    type="text"
-                    name="playlistName"
-                    value={this.state.playlistName}
-                    onChange={this.handleTextChange}
-                  />
-                </InputContainer>
-              </Row>
-              <Row>
-                <LabelContainer>
-                  <InputLabel>Number of songs</InputLabel>
-                </LabelContainer>
-                <InputContainer>
-                  <InputBox
-                    type="number"
-                    name="numSongs"
-                    value={this.state.numSongs}
-                    onChange={this.handleNumChange}
-                  />
-                </InputContainer>
-              </Row>
-              <Row>
-                <CreateButton onClick={this.handleSubmit}>
-                  Create Playlist
-                </CreateButton>
-              </Row>
-            </form>
-          </div>
-        </PageContent>
+      <Wrapper>
+        <Grid centered columns={1} textAlign="center">
+          <Grid.Column textAlign="center" columns={1}>
+            <Grid.Row centered>
+              <Title>Discover New Music!</Title>
+            </Grid.Row>
+            <Grid.Row centered>
+              <StyledInput
+                name="playlistName"
+                size="big"
+                type="text"
+                placeholder="Playlist name"
+                value={this.state.playlistName}
+                onChange={this.handleTextChange}
+              ></StyledInput>
+            </Grid.Row>
+            <Grid.Row centered>
+              <StyledInput
+                name="numSongs"
+                size="big"
+                type="number"
+                placeholder="Number of songs"
+                value={this.state.numSongs}
+                onChange={this.handleNumChange}
+              ></StyledInput>
+            </Grid.Row>
+            <StyledRow>
+              <StyledButton size="big" onClick={this.handleSubmit}>
+                Create Playlist
+              </StyledButton>
+            </StyledRow>
+          </Grid.Column>
+        </Grid>
       </Wrapper>
     );
   }

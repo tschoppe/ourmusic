@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import ourmusic from "../apis/ourmusic";
 import styled from "styled-components";
-import { Grid, Header, GridColumn, Button } from "semantic-ui-react";
+import { Grid, GridColumn, Button } from "semantic-ui-react";
 
 const onButtonClick = async () => {
   const response = await ourmusic.get("/login");
@@ -19,13 +19,14 @@ const Wrapper = styled.div`
 const Title = styled.div`
   font-size: 5em;
   font-weight: bold;
-  padding-bottom: 10%;
+  padding-bottom: 25%;
   color: #ffffff;
 `;
 
 const StyledButton = styled(Button)`
   color: #ffffff !important;
   background-color: #801336 !important;
+  cursor: pointer;
 `;
 
 const landing = () => {
@@ -39,7 +40,7 @@ const landing = () => {
         </Grid.Row>
         <Grid.Row centered columns={1}>
           <GridColumn textAlign="center">
-            <StyledButton onClick={onButtonClick}>
+            <StyledButton size="big" onClick={onButtonClick}>
               Login with Spotify
             </StyledButton>
           </GridColumn>
