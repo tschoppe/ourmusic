@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Grid from "@material-ui/core";
 
 const Title = styled.h1`
   text-align: center;
@@ -13,12 +12,12 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-color: #2d132c;
 `;
 
 const PageContent = styled.div`
   max-width: 75%;
   text-align: center;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
 `;
 
 const InputContainer = styled.div`

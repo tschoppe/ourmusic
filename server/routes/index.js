@@ -54,7 +54,7 @@ router.post("/playlist", async (req, res) => {
     req.body.playlistName
   );
   await saveUserData(userEmail);
-  const seeds = await getSeedData(userEmail);
+  const seeds = await getPlaylistSeed(userEmail);
   const recommendations = await getRecommendations(
     seeds.tracks.slice(0, 3),
     seeds.artists.slice(0, 2),
@@ -72,6 +72,7 @@ router.post("/playlist", async (req, res) => {
   }
 });
 
+//create playlist from recommendations
 router.post("/createUserList", async (req, res) => {
   console.log(req.body.params);
   const userId = await getUserId();
@@ -93,12 +94,10 @@ router.post("/createUserList", async (req, res) => {
   }
 });
 
-const getSeedData = async userEmail => {
+//get & format seed data from database
+const getPlaylistSeed = async userEmail => {
   var collection = db.get("music");
-  const data = await collection.find(
-    { userEmail: { userEmail: userEmail } },
-    "data"
-  );
+  const data = await collection.find({ userEmail }, "data");
   let mediumTracks = [];
   let mediumArtists = [];
   data.forEach(item => {
@@ -121,12 +120,19 @@ const getSeedData = async userEmail => {
   };
 };
 
+//stores listening data in database
 const saveUserData = async userEmail => {
   var collection = db.get("music");
-  const userData = await getData(userEmail);
-  //console.log(userData);
+  const userData = await getListeningData(userEmail);
 
-  collection.insert(userData, function(err, doc) {
+  const data = {
+    $set: userData
+  };
+
+  collection.update({ userEmail: userEmail }, data, { upsert: true }, function(
+    err,
+    doc
+  ) {
     if (err) {
       console.log(err);
     } else {
@@ -166,12 +172,12 @@ const getUserEmail = async () => {
   }
 };
 
-const getData = async userEmail => {
+const getListeningData = async userEmail => {
   const mediumTracks = await getUserFavoriteTracks(10, "short_term");
   const mediumArtists = await getUserFavoriteArtists(10, "short_term");
   //console.log(mediumTracks);
   const userData = {
-    userEmail: { userEmail },
+    userEmail,
     data: {
       mediumTracks,
       mediumArtists
