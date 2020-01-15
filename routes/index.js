@@ -39,7 +39,7 @@ router.get("/callback", async (req, res) => {
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
 
-    res.redirect("http://localhost:3000/home");
+    res.redirect("https://your-music-app.herokuapp.com/home");
   } catch (err) {
     res.redirect("/#/error/invalid token");
   }
