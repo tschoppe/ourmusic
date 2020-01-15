@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import React from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import landing from "./landing";
 import home from "./home";
 import "semantic-ui-css/semantic.min.css";

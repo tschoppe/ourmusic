@@ -1,33 +1,12 @@
 import React from "react";
 import ourmusic from "../apis/ourmusic";
-import styled from "styled-components";
-import { Grid, GridColumn, Button } from "semantic-ui-react";
+import { Grid, GridColumn } from "semantic-ui-react";
+import { Title, Wrapper, StyledButton } from "../components/styled/styled";
 
 const onButtonClick = async () => {
   const response = await ourmusic.get("/login");
   window.location.replace(response.data);
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: #2d132c;
-`;
-
-const Title = styled.div`
-  font-size: 5em;
-  font-weight: bold;
-  padding-bottom: 25%;
-  color: #ffffff;
-`;
-
-const StyledButton = styled(Button)`
-  color: #ffffff !important;
-  background-color: #801336 !important;
-  cursor: pointer;
-`;
 
 const landing = () => {
   return (
@@ -35,7 +14,9 @@ const landing = () => {
       <Grid centered columns={1} textAlign="center">
         <Grid.Row centered columns={1}>
           <Grid.Column textAlign="center">
-            <Title>Your Music</Title>
+            <Title fontSize="5em" bottomPadding="25%">
+              Your Music
+            </Title>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered columns={1}>
