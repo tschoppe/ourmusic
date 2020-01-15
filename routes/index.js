@@ -41,6 +41,7 @@ router.get("/callback", async (req, res) => {
 
     res.redirect("https://your-music-app.herokuapp.com/home");
   } catch (err) {
+    console.log(err);
     res.redirect("/#/error/invalid token");
   }
 });
