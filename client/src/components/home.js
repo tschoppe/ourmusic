@@ -34,10 +34,13 @@ class home extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:9000/playlist", {
-      playlistName: this.state.playlistName,
-      numSongs: this.state.numSongs
-    });
+    const response = await axios.post(
+      "https://your-music-app.herokuapp.com/playlist",
+      {
+        playlistName: this.state.playlistName,
+        numSongs: this.state.numSongs
+      }
+    );
     this.setState({ initialLoad: false });
     if (response.status === 200) {
       this.setState({ success: true });
