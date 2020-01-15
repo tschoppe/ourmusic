@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var monk = require("monk");
-const db = monk("localhost:27017/nodetest1");
+const db = monk(process.env.MONGODB_URI || "localhost:27017/nodetest1");
 
 const SpotifyWebApi = require("spotify-web-api-node");
 scopes = [
