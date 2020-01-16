@@ -4,7 +4,7 @@ import { Grid, GridColumn } from "semantic-ui-react";
 import { Title, Wrapper, StyledButton } from "../components/styled/styled";
 
 const onButtonClick = async () => {
-  const response = await ourmusic.get("/login");
+  const response = await ourmusic.get("login");
   window.location.replace(response.data);
 };
 
